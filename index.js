@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use((req, res, next) => {
   // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Origin", "http://localhost:8000"); // YOUR-DOMAIN.TLD
+  res.header("Access-Control-Allow-Origin", "https://face4peace.com"); // YOUR-DOMAIN.TLD
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   if (req.method === "OPTIONS") {
