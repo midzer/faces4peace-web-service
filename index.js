@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 
 const imageDataURI = require('image-data-uri');
 
-const imagePath = './images/';
+const imagePath = '../../html/';
 let imageCount;
 
 fs.readdir(imagePath, (err, files) => {
@@ -31,19 +31,20 @@ function removeTags (string) {
   return string ? string.replace(/<(?:.|\n)*?>/gm, '').trim() : '';
 }
 
-app.get('/', function(req, res, next) {
+app.get('/upload', function(req, res, next) {
   if (imageCount) res.json({ message: imageCount});
   else next();
 });
 
-app.post('/', function(req, res, next) {
-  const filePath = imagePath + ++imageCount;
-  imageDataURI.outputFile(removeTags(req.body.source), filePath)
-  .then(result => {
-    console.log(result);
-  });
-  /*if (created)*/ res.json({ message: imageCount});
-  //else next();
+app.post('/upload', async function(req, res, next) {
+  try {
+    const filePath = imagePath + ++imageCount;
+    await imageDataURI.outputFile(removeTags(req.body.source), filePath)
+    res.json({ message: imageCount});
+  }
+  catch (error) {
+    return next(error);
+  }
 });
 
 // middleware with an arity of 4 are considered
