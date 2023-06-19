@@ -1,0 +1,9 @@
+{
+  "name": "faces4peace-web-service",
+  "version": "0.0.1",
+  "description": "Node.js",
+  "dependencies": {
+    "express": "^4.18.2",
+    "image-data-uri": "^2.0.1"
+  }
+}
