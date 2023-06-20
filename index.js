@@ -38,7 +38,7 @@ app.get('/upload', function(req, res, next) {
 
 app.post('/upload', async function(req, res, next) {
   try {
-    const filePath = imagePath + ++imageCount;
+    const filePath = imagePath + imageCount++;
     await imageDataURI.outputFile(removeTags(req.body.source), filePath)
     res.json({ message: imageCount});
   }
